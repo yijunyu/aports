@@ -1,0 +1,31 @@
+# Maintainer: Yijun Yu <y.yu@open.ac.uk>
+pkgname=antlr4
+pkgver=4.7
+pkgrel=0
+pkgdesc="ANother Tool for Language Recognition"
+url="http://www.antlr.org/"
+arch="all"
+license="BSD"
+depends="util-linux"
+makedepends="util-linux-dev"
+subpackages="$pkgname-dev"
+source="antlr-4.7-complete.jar::http://www.antlr.org/download/antlr-4.7-complete.jar
+	antlr4-cpp-runtime-4.7-source.zip::http://www.antlr.org/download/antlr4-cpp-runtime-4.7-source.zip"
+builddir="$srcdir"
+options="!check"
+build() {
+	cd "$builddir"
+	sed -i -e '/CMP0059/d' CMakeLists.txt
+	cmake . -DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_BUILD_TYPE=Release
+	make -j 8
+}
+
+package() {
+	cd "$builddir"
+	make DESTDIR="$pkgdir" install
+        install -c -m 644 antlr-4.7-complete.jar "$pkgdir"/usr/lib/antlr-4.7-complete.jar
+}
+
+sha512sums="4172eb0d72a57aaff913cafe9e1ca36d29eec7241a9c495c5bef6009e4938c6aac887c93e273c5b088e97420746a13dfc12e7fac0c9776745b101a5da66c3888  antlr-4.7-complete.jar
+a14fd3320537075a8d4c1cfa81d416bad6257d238608e2428f4930495072cce984c707126e3777ffd3849dd6b6cdf1bf43624bd6d318b1fa5dd6749a7304f808  antlr4-cpp-runtime-4.7-source.zip"
