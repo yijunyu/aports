@@ -1,0 +1,25 @@
+# Maintainer: Yijun Yu <y.yu@open.ac.uk>
+pkgname=fast
+pkgver=0.0.5
+pkgrel=0
+pkgdesc="Flat Abstract Syntax Tree"
+url="https://github.com/f-ast/fast"
+arch="all"
+license="BSD"
+depends="srcml srcSlice protobuf flatbuffers antlr4 openjdk8 coreutils perl jq"
+depends_dev="srcml-dev srcSlice-dev protobuf-dev flatbuffers-dev antlr4-dev"
+makedepends="$depends_dev"
+install=""
+source="fast-$pkgver.tar.gz::https://github.com/f-ast/fast/archive/v$pkgver.tar.gz"
+builddir="$srcdir/fast-$pkgver"
+options="!check !fhs"
+build() {
+        cd "$builddir"
+        make
+}
+
+package() {
+        cd "$builddir"
+        make install prefix="$pkgdir"/usr
+}
+sha512sums="7353f18f561f72bea2e747491cb032a926a4958a38c90f26f3edd49d721bb2f3bdad1b4224bf12a9f03b2b0e991b6feb4cba7b8012022e0aac5e189b9482a88e  fast-0.0.5.tar.gz"
