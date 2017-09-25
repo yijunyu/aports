@@ -1,0 +1,49 @@
+# Maintainer: Yijun Yu <y.yu@open.ac.uk>
+pkgname=srcSlice
+pkgver="1.0"
+pkgrel=0
+pkgdesc="Lightweight tool for slicing"
+url="https://github.com/srcml/srcSlice"
+arch="all"
+license="GPL"
+depends="srcml antlr antlr4"
+depends_dev="srcml-dev antlr-dev antlr4-dev"
+makedepends="$depends_dev cmake"
+install=""
+subpackages="$pkgname-dev"
+source="srcSlice_beta_1.0.tar.gz::https://github.com/srcML/srcSlice/archive/srcSlice_beta_1.0.tar.gz
+	1.0.diff"
+builddir="$srcdir/srcSlice-srcSlice_beta_1.0"
+options="!check !fhs"
+build() {
+	mkdir -p "$builddir"/build
+	cd "$builddir"
+	patch -p1 < ../1.0.diff
+	cd srcSAX
+	mkdir -p build
+	cd build
+        cmake .. \
+                -DCMAKE_INSTALL_PREFIX=/usr \
+                -DCMAKE_BUILD_TYPE=Release
+	make
+	mkdir -p "$pkgdir"/usr/lib
+	install -c -m 0644 bin/libsrcsax.a "$pkgdir"/usr/lib/libsrcsax.a
+	install -c -m 0644 bin/libsrcsax.so "$pkgdir"/usr/lib/libsrcsax.so
+	cd ../..
+	cd build
+        cmake .. \
+                -DCMAKE_INSTALL_PREFIX=/usr \
+                -DCMAKE_BUILD_TYPE=Release
+	make -j 8
+}
+
+package() {
+	cd "$builddir"/build
+	mkdir -p "$pkgdir"/usr/bin
+	mkdir -p "$pkgdir"/usr/lib
+	install -c -m 0755 bin/srcSlice "$pkgdir"/usr/bin/srcSlice
+	install -c -m 0644 bin/libsrcsax.a "$pkgdir"/usr/lib/libsrcsax.a
+	install -c -m 0644 bin/libsrcsax.so "$pkgdir"/usr/lib/libsrcsax.so
+}
+sha512sums="ad85297344e468d1e6f39a2e04ea35858558a46fc792b221bbd4f7bbf9a94ce43cc31b0289f47d381ae77ed90cd9c4ef01c4bd769206312d84275ae5796d2e62  srcSlice_beta_1.0.tar.gz
+8be2c59d97e210aca5ed858e90268271c4dca92d65b6b12d6bac479bcf7902676237f99e3e7ecd1de1102c215df693c90ccde1ffff4654f4c352834b20938f29  1.0.diff"
