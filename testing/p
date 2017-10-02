@@ -1,3 +1,4 @@
+abuild-keygen -a -i
 abuild checksum
 abuild -r -P /target
 cd /target/testing/x86_64
