@@ -9,4 +9,5 @@ sudo apk add --allow-untrusted /target/testing/x86_64/srcSlice-dev-1.0-r0.apk
 sudo apk add protobuf protobuf-dev
 sudo apk add flatbuffers flatbuffers-dev
 sudo apk add coreutils openjdk8 perl jq
-sudo ../p
+sudo abuild-keygen -a -i -n
+../p
