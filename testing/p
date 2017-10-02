@@ -1,4 +1,4 @@
-abuild-keygen -a -i -n
+sudo abuild-keygen -a -i -n
 abuild checksum
 abuild -r -P /target
 cd /target/testing/x86_64
