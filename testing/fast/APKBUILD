@@ -6,9 +6,8 @@ pkgdesc="Flat Abstract Syntax Tree"
 url="https://github.com/f-ast/fast"
 arch="all"
 license="BSD"
-depends="srcml srcSlice protobuf flatbuffers antlr4 openjdk8 coreutils perl jq"
+depends="srcml srcSlice protobuf flatbuffers antlr4 openjdk8 coreutils"
 depends_dev="srcml-dev srcSlice-dev protobuf-dev flatbuffers-dev antlr4-dev"
-makedepends="$depends_dev"
 install=""
 source="fast-$pkgver.tar.gz::https://github.com/f-ast/fast/archive/v$pkgver.tar.gz"
 builddir="$srcdir/fast-$pkgver"
@@ -22,4 +21,4 @@ package() {
         cd "$builddir"
         make install prefix="$pkgdir"/usr
 }
-sha512sums="ed487a146451e5703810a2fbaafe0a018c9965367cba64c4dc8468b6b44e789f1c34f7aee9bf31a90e8cb376bcce721c8c21e64a056e047b2cd28b99583813da  fast-0.0.6.tar.gz"
+sha512sums="6e1683e7b7ff2fb648f4dc2e1e9a0e821486e9e40f3f728ddb73321815d7f145ae455f81b5925c3f3b98f77f4cb95c743d898e90a589f03fa3e9c68f98740a12  fast-0.0.6.tar.gz"
