@@ -1,6 +1,6 @@
 # Maintainer: Yijun Yu <y.yu@open.ac.uk>
 pkgname=fast
-pkgver=0.0.5
+pkgver=0.0.6
 pkgrel=0
 pkgdesc="Flat Abstract Syntax Tree"
 url="https://github.com/f-ast/fast"
@@ -22,4 +22,4 @@ package() {
         cd "$builddir"
         make install prefix="$pkgdir"/usr
 }
-sha512sums="6c4f99bcdc0e43c597a8d2d0d0ba0ecb84e84ca60bed3ec292f8f10fd23b286490fe893494834dcb2e5900ed52a648da8f6fd49bc5680a0d96c53005cb0bc27f  fast-0.0.5.tar.gz"
+sha512sums="ed487a146451e5703810a2fbaafe0a018c9965367cba64c4dc8468b6b44e789f1c34f7aee9bf31a90e8cb376bcce721c8c21e64a056e047b2cd28b99583813da  fast-0.0.6.tar.gz"
