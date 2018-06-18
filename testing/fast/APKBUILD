@@ -1,6 +1,6 @@
 # Maintainer: Yijun Yu <y.yu@open.ac.uk>
 pkgname=fast
-pkgver=0.0.6
+pkgver=0.0.8
 pkgrel=0
 pkgdesc="Flat Abstract Syntax Tree"
 url="https://github.com/f-ast/fast"
@@ -9,8 +9,9 @@ license="BSD"
 depends="srcml srcSlice protobuf flatbuffers antlr4 openjdk8 coreutils"
 depends_dev="srcml-dev srcSlice-dev protobuf-dev flatbuffers-dev antlr4-dev"
 install=""
-source="fast-$pkgver.tar.gz::https://github.com/f-ast/fast/archive/v$pkgver.tar.gz"
-builddir="$srcdir/fast-$pkgver"
+source="fast-$pkgver.tar.bz2::http://mcs.open.ac.uk/yy66/fast/v$pkgver.tar.bz2"
+#builddir="$srcdir/fast-$pkgver"
+builddir="$srcdir"
 options="!check !fhs"
 build() {
         cd "$builddir"
@@ -21,4 +22,4 @@ package() {
         cd "$builddir"
         make install prefix="$pkgdir"/usr
 }
-sha512sums="6e1683e7b7ff2fb648f4dc2e1e9a0e821486e9e40f3f728ddb73321815d7f145ae455f81b5925c3f3b98f77f4cb95c743d898e90a589f03fa3e9c68f98740a12  fast-0.0.6.tar.gz"
+sha512sums="1a5483e0fb4550e4886635cf07187b73af4a77c08883face4eca138de578089f3b870c1efc600a41f01796232244717cf22bea394aae93df6194a0ba7c18beb0  fast-0.0.8.tar.bz2"
