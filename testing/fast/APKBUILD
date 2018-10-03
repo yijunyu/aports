@@ -21,4 +21,4 @@ package() {
         cd "$builddir"
         make install prefix="$pkgdir"/usr
 }
-sha512sums="be31d881c269c75c12b7460c1d651540bc52cc4cef95ee12d8c97e359f4f8268a46c176c1d74962c5b051be1745c88f785252cdabcb16da467454b3d772e03b1  fast-0.0.8.tar.bz2"
+sha512sums="db07937924710222b7045856aeca849dae28cafc84b85b5c40b1ecfb76c3b9d6d833909ead3eef12b88deb274d754d34dc00a23fde18221a1896547d82fad9d0  fast-0.0.8.tar.bz2"
