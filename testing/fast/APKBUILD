@@ -7,7 +7,7 @@ url="https://github.com/f-ast/fast"
 arch="all"
 license="BSD"
 depends="srcml srcSlice protobuf flatbuffers antlr4 openjdk8 coreutils libgit2"
-depends_dev="srcml-dev srcSlice-dev protobuf-dev flatbuffers-dev antlr4-dev sqlite-dev libgit2-dev"
+depends_dev="srcml-dev srcSlice-dev protobuf flatbuffers-dev antlr4-dev sqlite-dev libgit2-dev"
 install=""
 source="fast-$pkgver.tar.bz2::https://yijunyu.github.io/archive/fast/v$pkgver.tar.bz2"
 builddir="$srcdir"
@@ -23,4 +23,4 @@ package() {
         cd "$builddir/x86_64"
         make install prefix="$pkgdir"/usr
 }
-sha512sums="4c43c1befac8ce36280ae8160f993d06fba1ca4d3aec23185595b58cd4b3752a574c2813f213124ae70dcb7900ebad407409a983652fc0be6d15ead3335177e5  fast-0.0.8.tar.bz2"
+sha512sums="7657388bc51ef6feaf41692a43ed675d11835eb5dee74ffef4ea9d0d2e4cf692ee8940a0b0ab2a6f41fb565c20e833b4a9c8ba3413f01fe69cb5b4219d08550e  fast-0.0.8.tar.bz2"
