@@ -1,6 +1,6 @@
 # Maintainer: Natanael Copa <ncopa@alpinelinux.org>
 pkgname=flatbuffers
-pkgver=1.8.0
+pkgver=1.10.0
 pkgrel=0
 pkgdesc="Memory Efficient Serialization Library"
 url="http://google.github.io/flatbuffers/"
@@ -15,8 +15,8 @@ source="flatbuffers-$pkgver.tar.gz::https://github.com/google/flatbuffers/archiv
 builddir="$srcdir/flatbuffers-$pkgver"
 
 build() {
-	mkdir -p "$builddir"/build
-	cd "$builddir"/build
+	mkdir -p "$builddir"/bld
+	cd "$builddir"/bld
 	cmake .. \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DFLATBUFFERS_BUILD_SHAREDLIB=on
@@ -24,8 +24,10 @@ build() {
 }
 
 package() {
-	cd "$builddir"/build
+	cd "$builddir"/bld
 	make install DESTDIR="$pkgdir"
+	mkdir -p "$pkgdir"/usr/bin/
+	cp ./flat* "$pkgdir"/usr/bin/
 }
 
-sha512sums="8f6c84caa6456418fc751ea9de456dd37378b3239d1a41d2205140e7b19a5b8b2e342a22dc8d7fdd0c36878455e9d7401cc6438d3b771f7875e8fcfe7bbd52f1  flatbuffers-1.8.0.tar.gz"
+sha512sums="b8382c8e9a45d6aca83270e93704b9ef2938e4ef9bb5165edbd8f286329e86353037ad6e54a99fd3d70b0c893d06cfd8766e00f05497e69be4b9e6c0506133d2  flatbuffers-1.10.0.tar.gz"
