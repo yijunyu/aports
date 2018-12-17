@@ -10,7 +10,7 @@ sudo apk add --allow-untrusted /target/testing/x86_64/srcSlice-1.0-r0.apk
 sudo apk add --allow-untrusted /target/testing/x86_64/srcSlice-dev-1.0-r0.apk
 sudo apk add --allow-untrusted /target/testing/x86_64/flatbuffers-1.10.0-r0.apk
 sudo apk add --allow-untrusted /target/testing/x86_64/flatbuffers-dev-1.10.0-r0.apk
-sudo apk add protobuf protobuf-dev
+sudo apk add --allow-untrusted /target/testing/x86_64/protobuf-3.6.1-r1.apk
 sudo apk add coreutils openjdk8 perl jq
 sudo abuild-keygen -a -i -n
 ../p

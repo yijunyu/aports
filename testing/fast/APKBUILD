@@ -16,6 +16,7 @@ build() {
 	mkdir -p "$builddir/x86_64"
         cd "$builddir/x86_64"
 	ln -s ../Makefile .
+	ln -s ../src/setup.py .
         make
 }
 
@@ -23,4 +24,4 @@ package() {
         cd "$builddir/x86_64"
         make install prefix="$pkgdir"/usr
 }
-sha512sums="7657388bc51ef6feaf41692a43ed675d11835eb5dee74ffef4ea9d0d2e4cf692ee8940a0b0ab2a6f41fb565c20e833b4a9c8ba3413f01fe69cb5b4219d08550e  fast-0.0.8.tar.bz2"
+sha512sums="1b63c301931adf15bd2aee94f0b15984bbea0464a4782df2dd4d483b88c31ddf8b148b69a302de5fe364eb6246bdd75eed20bdf4f0f71d5a2b96a1c13a34b443  fast-0.0.8.tar.bz2"
