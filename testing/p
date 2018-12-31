@@ -1,0 +1,5 @@
+abuild checksum
+abuild -r -P /target
+cd /target/testing/x86_64
+apk index -o APKINDEX.tar.gz *.apk
+abuild-sign APKINDEX.tar.gz
