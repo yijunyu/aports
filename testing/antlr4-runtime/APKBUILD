@@ -1,31 +1,38 @@
 # Maintainer: Yijun Yu <y.yu@open.ac.uk>
-pkgname=fast
+pkgname=antlr4-runtime
 pkgver=4.7.2
 pkgrel=0
 pkgdesc="ANTLR4 C++ Runtime"
 url="https://github.com/antlr/antlr4"
 arch="all"
 license="BSD"
-depends="antlr4 openjdk8"
-depends_dev="antlr4-dev"
+depends="openjdk8"
 install=""
-source="https://github.com/antlr/antlr4/archive/$pkgver.tar.gz::v$pkgver.tar.gz"
+source="v$pkgver.tar.gz::https://github.com/antlr/antlr4/archive/$pkgver.tar.gz"
 builddir="$srcdir"
 options="!check !fhs"
 build() {
-        cd "$builddir"
-	mkdir -p bld
-        cd bld
-	cmake -G Ninja ../runtime/Cpp
-	ninja
-	cd ..
+       cd "$builddir"
+       mkdir -p bld
+       cd bld
+       cmake -G Ninja ../antlr4-4.7.2/runtime/Cpp
+       ninja
+       cd ..
 }
 
 package() {
-        cd "$builddir"
-	cp ./runtime/Cpp/dist/libantlr4-runtime.4.7.2.dylib "$pkgdir"/usr/lib/
-	cp ./runtime/Cpp/dist/libantlr4-runtime.dylib "$pkgdir"/usr/lib/
+	echo "startdir = $startdir"
+	echo "abuild_path = $abuild_path"
+	echo "pkdir = $pkgdir"
+	echo "current folder = $(pwd)"
+        mkdir -p "$pkgdir"/usr/lib
+	find . -name "*.so*" | while read f; do
+	  cp $f "$pkgdir"/usr/lib/
+        done
+	find . -name "*.a" | while read f; do
+	  cp $f "$pkgdir"/usr/lib/
+        done
 	mkdir -p "$pkgdir"/usr/include/antlr4-runtime
-	cp -r ./runtime/Cpp/runtime/src/* "$pkgdir"/usr/include/antlr4-runtime/
+	cp -r antlr4-4.7.2/runtime/Cpp/runtime/src/* "$pkgdir"/usr/include/antlr4-runtime/
 }
-sha512sums="07bd1ec287709349190dc71d0b551250467bb5c492c22be3599669b024081a9f108e9407e87e87c200e24eed321c5ee884ed1457311355c459461271564595ac  fast-0.0.8.tar.bz2"
+sha512sums="dc8e0f1e98e6ba9a996c6db553adbf081ec6b5693fc555f3da18b2782bb9489baff3e15d7b284da5abddc88a8af6d78f66ac2bd82d2425f1e1b0924e09217c26  v4.7.2.tar.gz"

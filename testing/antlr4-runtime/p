@@ -1,5 +1,6 @@
 sudo apk add --allow-untrusted  \
  /target/testing/x86_64/antlr4-4.7-r0.apk \
  /target/testing/x86_64/antlr4-dev-4.7-r0.apk \
+ util-linux-dev
 sudo abuild-keygen -a -i -n
 ../p
