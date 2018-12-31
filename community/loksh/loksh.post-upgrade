@@ -1,1 +1,3 @@
-loksh.post-install
+#!/bin/sh
+add-shell '/bin/ksh'
+exit 0

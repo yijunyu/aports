@@ -1,1 +1,5 @@
-winbind.pre-install
+#!/bin/sh
+
+addgroup -S winbind 2>/dev/null
+
+exit 0

@@ -1,0 +1,31 @@
+# Maintainer: Yijun Yu <y.yu@open.ac.uk>
+pkgname=fast
+pkgver=4.7.2
+pkgrel=0
+pkgdesc="ANTLR4 C++ Runtime"
+url="https://github.com/antlr/antlr4"
+arch="all"
+license="BSD"
+depends="antlr4 openjdk8"
+depends_dev="antlr4-dev"
+install=""
+source="https://github.com/antlr/antlr4/archive/$pkgver.tar.gz::v$pkgver.tar.gz"
+builddir="$srcdir"
+options="!check !fhs"
+build() {
+        cd "$builddir"
+	mkdir -p bld
+        cd bld
+	cmake -G Ninja ../runtime/Cpp
+	ninja
+	cd ..
+}
+
+package() {
+        cd "$builddir"
+	cp ./runtime/Cpp/dist/libantlr4-runtime.4.7.2.dylib "$pkgdir"/usr/lib/
+	cp ./runtime/Cpp/dist/libantlr4-runtime.dylib "$pkgdir"/usr/lib/
+	mkdir -p "$pkgdir"/usr/include/antlr4-runtime
+	cp -r ./runtime/Cpp/runtime/src/* "$pkgdir"/usr/include/antlr4-runtime/
+}
+sha512sums="07bd1ec287709349190dc71d0b551250467bb5c492c22be3599669b024081a9f108e9407e87e87c200e24eed321c5ee884ed1457311355c459461271564595ac  fast-0.0.8.tar.bz2"

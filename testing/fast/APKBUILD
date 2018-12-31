@@ -9,19 +9,22 @@ license="BSD"
 depends="srcml srcSlice protobuf flatbuffers antlr4 openjdk8 coreutils libgit2"
 depends_dev="srcml-dev srcSlice-dev protobuf flatbuffers-dev antlr4-dev sqlite-dev libgit2-dev"
 install=""
-source="fast-$pkgver.tar.bz2::https://yijunyu.github.io/archive/fast/v$pkgver.tar.bz2"
+source="fast-$pkgver.tar.bz2::http://docker.for.mac.localhost:8080/v$pkgver.tar.bz2"
+#subpackages="$pkgname-dev"
 builddir="$srcdir"
 options="!check !fhs"
 build() {
-	mkdir -p "$builddir/x86_64"
-        cd "$builddir/x86_64"
-	ln -s ../Makefile .
-	ln -s ../src/setup.py .
-        make
+        cd "$builddir"
+	ln -s ../.git .
+	mkdir -p bld
+        cd bld
+        cmake -G Ninja ../src
+	ninja
 }
 
 package() {
-        cd "$builddir/x86_64"
-        make install prefix="$pkgdir"/usr
+        cd "$builddir/bld"
+        cp bin/fast "$pkgdir"/usr/bin
+        cp fast.proto "$pkgdir"/usr/share
 }
-sha512sums="1b63c301931adf15bd2aee94f0b15984bbea0464a4782df2dd4d483b88c31ddf8b148b69a302de5fe364eb6246bdd75eed20bdf4f0f71d5a2b96a1c13a34b443  fast-0.0.8.tar.bz2"
+sha512sums="07bd1ec287709349190dc71d0b551250467bb5c492c22be3599669b024081a9f108e9407e87e87c200e24eed321c5ee884ed1457311355c459461271564595ac  fast-0.0.8.tar.bz2"
