@@ -1,0 +1,30 @@
+# Maintainer: Yijun Yu <y.yu@open.ac.uk>
+pkgname=fast
+pkgver=0.0.8
+pkgrel=0
+pkgdesc="Flat Abstract Syntax Tree"
+url="https://github.com/f-ast/fast"
+arch="all"
+license="BSD"
+depends="srcml srcSlice protobuf flatbuffers antlr4 openjdk8 coreutils libgit2 antlr4-runtime"
+depends_dev="srcml-dev srcSlice-dev protobuf flatbuffers-dev antlr4-dev sqlite-dev libgit2-dev antlr4-runtime"
+install=""
+source="fast-$pkgver.tar.bz2::http://docker.for.mac.localhost:8080/v$pkgver.tar.bz2"
+#subpackages="$pkgname-dev"
+builddir="$srcdir"
+options="!check !fhs"
+build() {
+        cd "$builddir"
+	ln -s ../.git .
+	mkdir -p bld
+        cd bld
+        cmake -G Ninja ../src
+	ninja
+}
+
+package() {
+        cd "$builddir/bld"
+        cp bin/fast "$pkgdir"/usr/bin
+        cp fast.proto "$pkgdir"/usr/share
+}
+sha512sums="07bd1ec287709349190dc71d0b551250467bb5c492c22be3599669b024081a9f108e9407e87e87c200e24eed321c5ee884ed1457311355c459461271564595ac  fast-0.0.8.tar.bz2"
