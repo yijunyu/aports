@@ -19,12 +19,16 @@ build() {
 	mkdir -p bld
         cd bld
         cmake -G Ninja ../src
-	ninja
+	ninja -v
 }
 
 package() {
-        cd "$builddir/bld"
-        cp bin/fast "$pkgdir"/usr/bin
+        cd "bld"
+        echo "$(pwd)"
+        echo "$pkgdir"
+        mkdir -p "$pkgdir"/usr/bin
+        cp bin/headfast "$pkgdir"/usr/bin/fast
+        mkdir -p "$pkgdir"/usr/share
         cp fast.proto "$pkgdir"/usr/share
 }
-sha512sums="07bd1ec287709349190dc71d0b551250467bb5c492c22be3599669b024081a9f108e9407e87e87c200e24eed321c5ee884ed1457311355c459461271564595ac  fast-0.0.8.tar.bz2"
+sha512sums="e14751c98ad13bd9334b87c6264d04c0bc8e9fbb59bb665ce97e31227122d33894b1b6703b43cdda846db31672ecff4fcbded9e02942b429b384324d266dd9ad  fast-0.0.8.tar.bz2"
