@@ -1,0 +1,2 @@
+sudo abuild-keygen -a -i -n
+../p

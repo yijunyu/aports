@@ -1,34 +1,25 @@
 # Maintainer: Yijun Yu <y.yu@open.ac.uk>
-pkgname=fast
-pkgver=0.0.8
+pkgname=gumtree
+pkgver=2.1.0
 pkgrel=0
-pkgdesc="Flat Abstract Syntax Tree"
-url="https://github.com/f-ast/fast"
+pkgdesc="GumTreeDiff"
+url="https://github.com/yijunyu/gumtree"
 arch="all"
 license="BSD"
 depends="srcml srcSlice protobuf flatbuffers antlr4 openjdk8 coreutils libgit2"
 depends_dev="srcml-dev srcSlice-dev protobuf flatbuffers-dev sqlite-dev libgit2-dev"
 install=""
-source="fast-$pkgver.tar.bz2::http://docker.for.mac.localhost:8080/v$pkgver.tar.bz2"
+source="gumtree.zip::http://docker.for.mac.localhost:8080/gumtree.zip"
 #subpackages="$pkgname-dev"
 builddir="$srcdir"
 options="!check !fhs"
 build() {
-        cd "$builddir"
-	ln -s ../.git .
-	mkdir -p bld
-        cd bld
-        cmake -G Ninja ../src
-	ninja -v
 }
 
 package() {
-        cd "bld"
         echo "$(pwd)"
         echo "$pkgdir"
-        mkdir -p "$pkgdir"/usr/bin
-        cp bin/headfast "$pkgdir"/usr/bin/fast
-        mkdir -p "$pkgdir"/usr/share
-        cp fast.proto "$pkgdir"/usr/share
+        mkdir -p "$pkgdir"/usr
+        cp -r gumtree-2.1.0-*/* "$pkgdir"/usr/
 }
 sha512sums="a2f8472d7e47b7576081ee85bd49e6892521ce1a4b187f1172d7a00c351f140b604b1f54ac4d8432a7b47c15974af48f3bf1d363c11ecd36428cbcfac1f30bad  fast-0.0.8.tar.bz2"
