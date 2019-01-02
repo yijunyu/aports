@@ -6,20 +6,21 @@ pkgdesc="GumTreeDiff"
 url="https://github.com/yijunyu/gumtree"
 arch="all"
 license="BSD"
-depends="srcml srcSlice protobuf flatbuffers antlr4 openjdk8 coreutils libgit2"
-depends_dev="srcml-dev srcSlice-dev protobuf flatbuffers-dev sqlite-dev libgit2-dev"
+depends="openjdk8"
+depends_dev=""
 install=""
 source="gumtree.zip::http://docker.for.mac.localhost:8080/gumtree.zip"
 #subpackages="$pkgname-dev"
 builddir="$srcdir"
 options="!check !fhs"
 build() {
+	echo prebuilt
 }
 
 package() {
         echo "$(pwd)"
         echo "$pkgdir"
         mkdir -p "$pkgdir"/usr
-        cp -r gumtree-2.1.0-*/* "$pkgdir"/usr/
+        cp -r gumtree-*-2.1.0-SNAPSHOT/* "$pkgdir"/usr/
 }
-sha512sums="a2f8472d7e47b7576081ee85bd49e6892521ce1a4b187f1172d7a00c351f140b604b1f54ac4d8432a7b47c15974af48f3bf1d363c11ecd36428cbcfac1f30bad  fast-0.0.8.tar.bz2"
+sha512sums="a6cf8a50a98525d0cf5e6a4362677f134bc416bb952d611e12e06e62c3c564917f1ce0cbed10ba9425af9ba14ca2c518201033d7708c2c7525bfe4a1482ce79e  gumtree.zip"
