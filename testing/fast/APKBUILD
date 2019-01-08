@@ -24,10 +24,17 @@ build() {
 		-DANTLR_EXECUTABLE=/usr/lib/antlr-4.7.2-complete.jar \
 		-DANTLR4_INCLUDE_DIRS=/usr/include/antlr4-runtime \
 		-DANTLR_SHARED_LIBRARIES=/usr/lib/libantlr4-runtime.so ../src
+	ninja
 }
 
 package() {
         cd "bld"
+	ls bin/
 	DESTDIR="$pkgdir" ninja install
+	mkdir -p "$pkgdir"/usr/bin
+	mkdir -p "$pkgdir"/usr/share
+        mv "$pkgdir"/usr/local/bin/headfast "$pkgdir"/usr/bin/fast
+        mv "$pkgdir"/usr/local/bin/headtest_fast "$pkgdir"/usr/bin/test_fast
+        install -m 0644 fast.proto "$pkgdir"/usr/share/fast.proto
 }
 sha512sums="034194c4fd9422e9385a04d7d90deb2435790ac424ff49e50a6623b0aaaf67c798cac82303c62193ab0bff7f6c11d043bcbaae709470bf5a80db1317ce762057  fast-0.0.8.tar.bz2"
